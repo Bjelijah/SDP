@@ -1,10 +1,11 @@
+package xyz.mercs.sdpsdk;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 
-
-public class AndroidDimensUtil {
+public class PxDimenCreator {
 
     /**
      * 基准宽度和高度(通常设置成UI图的分辨率的高度和宽度)
@@ -20,40 +21,45 @@ public class AndroidDimensUtil {
     private static final String WidthTemplate = "<dimen name=\"x{0}\">{1}px</dimen>\n";
     private static final String HeightTemplate = "<dimen name=\"y{0}\">{1}px</dimen>\n";
 
-    public static void main(String[] args) {
+
+    public static void gen(){
         // 获取项目res文件的路径
         getResPath(new File("").getAbsolutePath());
 
-        AndroidDimensUtil.createDimens(480, 320);
-        AndroidDimensUtil.createDimens(800, 480);
-        AndroidDimensUtil.createDimens(800, 600);
-        AndroidDimensUtil.createDimens(854, 480);
-        AndroidDimensUtil.createDimens(854, 540);
-        AndroidDimensUtil.createDimens(960, 540);
-        AndroidDimensUtil.createDimens(960, 640);
-        AndroidDimensUtil.createDimens(1024, 600);
-        AndroidDimensUtil.createDimens(1024, 768);
-        AndroidDimensUtil.createDimens(1184, 720);
-        AndroidDimensUtil.createDimens(1196, 720);
-        AndroidDimensUtil.createDimens(1208, 720);
-        AndroidDimensUtil.createDimens(1280, 720);
-        AndroidDimensUtil.createDimens(1280, 768);
-        AndroidDimensUtil.createDimens(1280, 800);
-        AndroidDimensUtil.createDimens(1334, 750);
-        AndroidDimensUtil.createDimens(1440, 900);
-        AndroidDimensUtil.createDimens(1700, 1080);
-        AndroidDimensUtil.createDimens(1776, 1080);
-        AndroidDimensUtil.createDimens(1794, 1080);
-        AndroidDimensUtil.createDimens(1800, 1080);
-        AndroidDimensUtil.createDimens(1812, 1080);
-        AndroidDimensUtil.createDimens(1920, 1080);
-        AndroidDimensUtil.createDimens(1920, 1200);
-        AndroidDimensUtil.createDimens(2160, 1080);
-        AndroidDimensUtil.createDimens(2560, 1440);
-        AndroidDimensUtil.createDimens(2560, 1600);
+        createDimens(480, 320);
+        createDimens(800, 480);
+        createDimens(800, 600);
+        createDimens(854, 480);
+        createDimens(854, 540);
+        createDimens(960, 540);
+        createDimens(960, 640);
+        createDimens(1024, 600);
+        createDimens(1024, 768);
+        createDimens(1184, 720);
+        createDimens(1196, 720);
+        createDimens(1208, 720);
+        createDimens(1280, 720);
+        createDimens(1280, 768);
+        createDimens(1280, 800);
+        createDimens(1334, 750);
+        createDimens(1440, 900);
+        createDimens(1700, 1080);
+        createDimens(1776, 1080);
+        createDimens(1794, 1080);
+        createDimens(1800, 1080);
+        createDimens(1812, 1080);
+        createDimens(1920, 1080);
+        createDimens(1920, 1200);
+        createDimens(2160, 1080);
+        createDimens(2560, 1440);
+        createDimens(2560, 1600);
 
         // 添加以上分辨率都木有通用的,参考:http://blog.csdn.net/guozhaohui628/article/details/71870530
-        AndroidDimensUtil.createCommonDimens(2);
+        createCommonDimens(2);
+    }
+
+    public static void main(String[] args) {
+
     }
 
     /**
@@ -193,5 +199,3 @@ public class AndroidDimensUtil {
         }
     }
 }
-
-

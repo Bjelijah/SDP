@@ -1,3 +1,5 @@
+package xyz.mercs.sdpsdk;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -5,38 +7,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class DimenCreator {
-
-
-
-
-    public static void writeFile( String text) {
-        String file = "./app/src/main/res/values/dimens.xml";
-
-        PrintWriter out = null;
-        try {
-            String [] dirStr = file.split("/dimens.xml");
-            File dir = new File(dirStr[0]);
-            if (!dir.exists()){
-                dir.mkdirs();
-            }
-            File f = new File(file);
-            if (!f.exists()){
-                f.createNewFile();
-            }
-
-            out = new PrintWriter(new BufferedWriter(new FileWriter(file)));
-
-            out.println(text);
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
-
-        }
-
-        out.close();
-
-    }
 
     private static void addDp(StringBuilder sb){
         final String dp = "\t<dimen name=\"{0}sdp\">{1}dp</dimen>\n";
@@ -57,7 +27,6 @@ public class DimenCreator {
         }
     }
 
-
     private static String createDimen(){
         StringBuilder sb = new StringBuilder();
         sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<resources>\n");
@@ -67,12 +36,31 @@ public class DimenCreator {
         return sb.toString();
     }
 
-
-
-
-    public static void main(String[] args){
-        writeFile(createDimen());
+    private static void writeFile(String file ,String text) {
+        PrintWriter out = null;
+        try {
+            String [] dirStr = file.split("/dimens.xml");
+            File dir = new File(dirStr[0]);
+            if (!dir.exists()){
+                dir.mkdirs();
+            }
+            File f = new File(file);
+            if (!f.exists()){
+                f.createNewFile();
+            }
+            out = new PrintWriter(new BufferedWriter(new FileWriter(file)));
+            out.println(text);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        out.close();
     }
 
+    public static void gen(){
+        writeFile("./sdpsdk/src/main/res/values/dimens.xml",createDimen());
+    }
 
+    public static void gen(String moduleName){
+        writeFile(moduleName+"/src/main/res/values/dimens.xml",createDimen());
+    }
 }

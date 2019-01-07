@@ -1,3 +1,5 @@
+package xyz.mercs.sdpsdk;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -6,17 +8,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/**
- * android 规范为 sw320px 下 1px = 1dp
- * 自定义 最小宽度 300px 下  1px = 1sdp
- *
- */
 public class DimenTool {
 
-    public static void gen() {
-        //以此文件夹下的dimens.xml文件内容为初始值参照
-        File file = new File("./sdpsdk/src/main/res/values/dimens.xml");
+    public static void gen(){
+        gen("./sdpsdk",300);
+    }
 
+    public static void gen(String moduleName,int sw) {
+        //以此文件夹下的dimens.xml文件内容为初始值参照
+        String dimenFilePath = moduleName+"/src/main/res/values/dimens.xml";
+        File file = new File(dimenFilePath);
         BufferedReader reader = null;
         StringBuilder sw240 = new StringBuilder();   //0.8
         StringBuilder sw270 = new StringBuilder();  //0.9
@@ -44,64 +45,48 @@ public class DimenTool {
         StringBuilder sw900 = new StringBuilder();
         StringBuilder sw930 = new StringBuilder();
         StringBuilder sw1080 = new StringBuilder();
-
         try {
-
             System.out.println("生成不同分辨率：");
-
             reader = new BufferedReader(new FileReader(file));
-
             String tempString;
-
             int line = 1;
-
             // 一次读入一行，直到读入null为文件结束
-
             while ((tempString = reader.readLine()) != null) {
-
-
                 if (tempString.contains("</dimen>")) {
-
                     //tempString = tempString.replaceAll(" ", "");
-
                     String start = tempString.substring(0, tempString.indexOf(">") + 1);
-
                     String end = tempString.substring(tempString.lastIndexOf("<") - 2);
                     //截取<dimen></dimen>标签内的内容，从>右括号开始，到左括号减2，取得配置的数字
                     Double num = Double.parseDouble
                             (tempString.substring(tempString.indexOf(">") + 1,
                                     tempString.indexOf("</dimen>") - 2));
-
                     //根据不同的尺寸，计算新的值，拼接新的字符串，并且结尾处换行。
-                    sw240.append(start).append( String.format("%.2f",num*0.8)).append(end).append("\r\n");
-                    sw270.append(start).append( String.format("%.2f",num*0.9)).append(end).append("\r\n");
-                    sw300.append(start).append( String.format("%.2f",num*1.0)).append(end).append("\r\n");
-                    sw320.append(start).append( String.format("%.2f",num*1.06667)).append(end).append("\r\n");
-                    sw330.append(start).append( String.format("%.2f",num*1.1)).append(end).append("\r\n");
-                    sw360.append(start).append( String.format("%.2f",num*1.2)).append(end).append("\r\n");
-                    sw390.append(start).append( String.format("%.2f",num*1.3)).append(end).append("\r\n");
-                    sw420.append(start).append( String.format("%.2f",num*1.4)).append(end).append("\r\n");
-                    sw450.append(start).append( String.format("%.2f",num*1.5)).append(end).append("\r\n");
-                    sw480.append(start).append( String.format("%.2f",num*1.6)).append(end).append("\r\n");
-                    sw510.append(start).append( String.format("%.2f",num*1.7)).append(end).append("\r\n");
-                    sw540.append(start).append( String.format("%.2f",num*1.8)).append(end).append("\r\n");
-                    sw570.append(start).append( String.format("%.2f",num*1.9)).append(end).append("\r\n");
-                    sw600.append(start).append( String.format("%.2f",num*2.0)).append(end).append("\r\n");
-                    sw630.append(start).append( String.format("%.2f",num*2.1)).append(end).append("\r\n");
-                    sw660.append(start).append( String.format("%.2f",num*2.2)).append(end).append("\r\n");
-                    sw690.append(start).append( String.format("%.2f",num*2.3)).append(end).append("\r\n");
-                    sw720.append(start).append( String.format("%.2f",num*2.4)).append(end).append("\r\n");
-                    sw750.append(start).append( String.format("%.2f",num*2.5)).append(end).append("\r\n");
-                    sw780.append(start).append( String.format("%.2f",num*2.6)).append(end).append("\r\n");
-                    sw810.append(start).append( String.format("%.2f",num*2.7)).append(end).append("\r\n");
-                    sw840.append(start).append( String.format("%.2f",num*2.8)).append(end).append("\r\n");
-                    sw870.append(start).append( String.format("%.2f",num*2.9)).append(end).append("\r\n");
-                    sw900.append(start).append( String.format("%.2f",num*3.0)).append(end).append("\r\n");
-                    sw930.append(start).append( String.format("%.2f",num*3.1)).append(end).append("\r\n");
-                    sw1080.append(start).append( String.format("%.2f",num*3.6)).append(end).append("\r\n");
-
-
-
+                    sw240.append(start).append( String.format("%.2f",num*(240.0f/sw))).append(end).append("\r\n");
+                    sw270.append(start).append( String.format("%.2f",num*(270.0f/sw))).append(end).append("\r\n");
+                    sw300.append(start).append( String.format("%.2f",num*(300.0f/sw))).append(end).append("\r\n");
+                    sw320.append(start).append( String.format("%.2f",num*(320.0f/sw))).append(end).append("\r\n");
+                    sw330.append(start).append( String.format("%.2f",num*(330.0f/sw))).append(end).append("\r\n");
+                    sw360.append(start).append( String.format("%.2f",num*(360.0f/sw))).append(end).append("\r\n");
+                    sw390.append(start).append( String.format("%.2f",num*(390.0f/sw))).append(end).append("\r\n");
+                    sw420.append(start).append( String.format("%.2f",num*(420.0f/sw))).append(end).append("\r\n");
+                    sw450.append(start).append( String.format("%.2f",num*(450.0f/sw))).append(end).append("\r\n");
+                    sw480.append(start).append( String.format("%.2f",num*(480.0f/sw))).append(end).append("\r\n");
+                    sw510.append(start).append( String.format("%.2f",num*(510.0f/sw))).append(end).append("\r\n");
+                    sw540.append(start).append( String.format("%.2f",num*(540.0f/sw))).append(end).append("\r\n");
+                    sw570.append(start).append( String.format("%.2f",num*(570.0f/sw))).append(end).append("\r\n");
+                    sw600.append(start).append( String.format("%.2f",num*(600.0f/sw))).append(end).append("\r\n");
+                    sw630.append(start).append( String.format("%.2f",num*(630.0f/sw))).append(end).append("\r\n");
+                    sw660.append(start).append( String.format("%.2f",num*(660.0f/sw))).append(end).append("\r\n");
+                    sw690.append(start).append( String.format("%.2f",num*(690.0f/sw))).append(end).append("\r\n");
+                    sw720.append(start).append( String.format("%.2f",num*(720.0f/sw))).append(end).append("\r\n");
+                    sw750.append(start).append( String.format("%.2f",num*(750.0f/sw))).append(end).append("\r\n");
+                    sw780.append(start).append( String.format("%.2f",num*(780.0f/sw))).append(end).append("\r\n");
+                    sw810.append(start).append( String.format("%.2f",num*(810.0f/sw))).append(end).append("\r\n");
+                    sw840.append(start).append( String.format("%.2f",num*(840.0f/sw))).append(end).append("\r\n");
+                    sw870.append(start).append( String.format("%.2f",num*(870.0f/sw))).append(end).append("\r\n");
+                    sw900.append(start).append( String.format("%.2f",num*(900.0f/sw))).append(end).append("\r\n");
+                    sw930.append(start).append( String.format("%.2f",num*(930.0f/sw))).append(end).append("\r\n");
+                    sw1080.append(start).append( String.format("%.2f",num*(1080.0f/sw))).append(end).append("\r\n");
                 } else {
                     sw240.append(tempString).append("\n");
                     sw270.append(tempString).append("\n");
@@ -132,39 +117,33 @@ public class DimenTool {
                 }
                 line++;
             }
-
             reader.close();
-
-
-            String sw240file = "./sdpsdk/src/main/res/values-sw240dp/dimens.xml";
-            String sw270file = "./sdpsdk/src/main/res/values-sw270dp/dimens.xml";
-            String sw300file = "./sdpsdk/src/main/res/values-sw300dp/dimens.xml";
-            String sw320file = "./sdpsdk/src/main/res/values-sw320dp/dimens.xml";
-            String sw330file = "./sdpsdk/src/main/res/values-sw330dp/dimens.xml";
-            String sw360file = "./sdpsdk/src/main/res/values-sw360dp/dimens.xml";
-            String sw390file = "./sdpsdk/src/main/res/values-sw390dp/dimens.xml";
-            String sw420file = "./sdpsdk/src/main/res/values-sw420dp/dimens.xml";
-            String sw450file = "./sdpsdk/src/main/res/values-sw450dp/dimens.xml";
-            String sw480file = "./sdpsdk/src/main/res/values-sw480dp/dimens.xml";
-            String sw510file = "./sdpsdk/src/main/res/values-sw510dp/dimens.xml";
-            String sw540file = "./sdpsdk/src/main/res/values-sw540dp/dimens.xml";
-            String sw570file = "./sdpsdk/src/main/res/values-sw570dp/dimens.xml";
-            String sw600file = "./sdpsdk/src/main/res/values-sw600dp/dimens.xml";
-            String sw630file = "./sdpsdk/src/main/res/values-sw630dp/dimens.xml";
-            String sw660file = "./sdpsdk/src/main/res/values-sw660dp/dimens.xml";
-            String sw690file = "./sdpsdk/src/main/res/values-sw690dp/dimens.xml";
-            String sw720file = "./sdpsdk/src/main/res/values-sw720dp/dimens.xml";
-            String sw750file = "./sdpsdk/src/main/res/values-sw750dp/dimens.xml";
-            String sw780file = "./sdpsdk/src/main/res/values-sw780dp/dimens.xml";
-            String sw810file = "./sdpsdk/src/main/res/values-sw810dp/dimens.xml";
-            String sw840file = "./sdpsdk/src/main/res/values-sw840dp/dimens.xml";
-            String sw870file = "./sdpsdk/src/main/res/values-sw870dp/dimens.xml";
-            String sw900file = "./sdpsdk/src/main/res/values-sw900dp/dimens.xml";
-            String sw930file = "./sdpsdk/src/main/res/values-sw930dp/dimens.xml";
-            String sw1080file = "./sdpsdk/src/main/res/values-sw1080dp/dimens.xml";
-
-
-
+            String sw240file = moduleName+"/src/main/res/values-sw240dp/dimens.xml";
+            String sw270file = moduleName+"/src/main/res/values-sw270dp/dimens.xml";
+            String sw300file = moduleName+"/src/main/res/values-sw300dp/dimens.xml";
+            String sw320file = moduleName+"/src/main/res/values-sw320dp/dimens.xml";
+            String sw330file = moduleName+"/src/main/res/values-sw330dp/dimens.xml";
+            String sw360file = moduleName+"/src/main/res/values-sw360dp/dimens.xml";
+            String sw390file = moduleName+"/src/main/res/values-sw390dp/dimens.xml";
+            String sw420file = moduleName+"/src/main/res/values-sw420dp/dimens.xml";
+            String sw450file = moduleName+"/src/main/res/values-sw450dp/dimens.xml";
+            String sw480file = moduleName+"/src/main/res/values-sw480dp/dimens.xml";
+            String sw510file = moduleName+"/src/main/res/values-sw510dp/dimens.xml";
+            String sw540file = moduleName+"/src/main/res/values-sw540dp/dimens.xml";
+            String sw570file = moduleName+"/src/main/res/values-sw570dp/dimens.xml";
+            String sw600file = moduleName+"/src/main/res/values-sw600dp/dimens.xml";
+            String sw630file = moduleName+"/src/main/res/values-sw630dp/dimens.xml";
+            String sw660file = moduleName+"/src/main/res/values-sw660dp/dimens.xml";
+            String sw690file = moduleName+"/src/main/res/values-sw690dp/dimens.xml";
+            String sw720file = moduleName+"/src/main/res/values-sw720dp/dimens.xml";
+            String sw750file = moduleName+"/src/main/res/values-sw750dp/dimens.xml";
+            String sw780file = moduleName+"/src/main/res/values-sw780dp/dimens.xml";
+            String sw810file = moduleName+"/src/main/res/values-sw810dp/dimens.xml";
+            String sw840file = moduleName+"/src/main/res/values-sw840dp/dimens.xml";
+            String sw870file = moduleName+"/src/main/res/values-sw870dp/dimens.xml";
+            String sw900file = moduleName+"/src/main/res/values-sw900dp/dimens.xml";
+            String sw930file = moduleName+"/src/main/res/values-sw930dp/dimens.xml";
+            String sw1080file = moduleName+"/src/main/res/values-sw1080dp/dimens.xml";
 
             //将新的内容，写入到指定的文件中去
             writeFile(sw240file, sw240.toString());
@@ -193,44 +172,21 @@ public class DimenTool {
             writeFile(sw900file, sw900.toString());
             writeFile(sw930file, sw930.toString());
             writeFile(sw1080file, sw1080.toString());
-
-
-
         } catch (IOException e) {
-
             e.printStackTrace();
-
         } finally {
-
             if (reader != null) {
-
                 try {
-
                     reader.close();
-
                 } catch (IOException e1) {
-
                     e1.printStackTrace();
-
                 }
-
             }
-
         }
-
     }
 
-
-    /**
-     * 写入方法
-     *
-     */
-
     public static void writeFile(String file, String text) {
-
-
         PrintWriter out = null;
-
         try {
             String [] dirStr = file.split("/dimens.xml");
             File dir = new File(dirStr[0]);
@@ -241,28 +197,11 @@ public class DimenTool {
             if (!f.exists()){
                 f.createNewFile();
             }
-
-
-
             out = new PrintWriter(new BufferedWriter(new FileWriter(file)));
-
             out.println(text);
-
         } catch (IOException e) {
-
             e.printStackTrace();
-
         }
-
-
-
         out.close();
-
     }
-    public static void main(String[] args) {
-
-        gen();
-
-    }
-
 }
