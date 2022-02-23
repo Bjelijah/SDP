@@ -6,7 +6,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0.5"
+        versionName "1.1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -45,4 +45,33 @@ dependencies {
 //    testImplementation 'junit:junit:4.12'
 //    androidTestImplementation 'com.android.support.test:runner:1.0.2'
 //    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+
+group '[GROUP_ID]'
+version '[VERSION]'
+def artifactId = '[ARTIFACT_ID]'
+
+apply plugin: 'maven'
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: 'https://packages.aliyun.com/maven/repository/2112588-release-Pgyrf2/') {
+                authentication(
+                        userName: '60cb08ecaa6381038e50f87c',
+                        password: 'KvKjXDht(lqq'
+                )
+            }
+            snapshotRepository(url: 'https://packages.aliyun.com/maven/repository/2112588-snapshot-3H0zwN/') {
+                authentication(
+                        userName: '60cb08ecaa6381038e50f87c',
+                        password: 'KvKjXDht(lqq'
+                )
+            }
+//            pom.version = '1.1.4-SNAPSHOT'
+            pom.version = '1.1.0'
+            pom.artifactId = 'SDP'
+            pom.groupId = 'com.github.Bjelijah'
+        }
+    }
 }
