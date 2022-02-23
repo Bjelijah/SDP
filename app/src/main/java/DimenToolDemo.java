@@ -1,4 +1,4 @@
-import xyz.mercs.sdpsdk.DimenTool;
+import com.cbj.sdpsdk.DimenTool;
 
 public class DimenToolDemo {
     public static void main(String [] args){

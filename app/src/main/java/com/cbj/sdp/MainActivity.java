@@ -1,4 +1,4 @@
-package xyz.mercs.sdp;
+package com.cbj.sdp;
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package xyz.mercs.sdpsdk;
+package com.cbj.sdpsdk;
 
 import android.content.Context;
 import android.util.TypedValue;

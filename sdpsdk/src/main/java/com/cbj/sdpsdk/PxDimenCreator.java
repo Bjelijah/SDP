@@ -1,4 +1,4 @@
-package xyz.mercs.sdpsdk;
+package com.cbj.sdpsdk;
 
 import java.io.File;
 import java.io.FileNotFoundException;
