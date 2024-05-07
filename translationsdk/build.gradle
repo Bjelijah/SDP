@@ -2,6 +2,7 @@ plugins {
     id 'groovy'
     id 'maven'
     id 'maven-publish'
+
 }
 
 
@@ -15,18 +16,25 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:4.9.0"
 }
 
-//afterEvaluate{
-//
-//}
+afterEvaluate{
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId = 'com.github.Bjelijah'
+                artifactId = 'Translation'
+                version = '1.1.6'
+            }
+        }
+    }
+}
 publishing {
     publications {
         maven(MavenPublication) {
             groupId = 'com.github.Bjelijah'
             artifactId = 'Translation'
-            version = '1.1.5'
+            version = '1.1.6'
             from components.java
         }
-
     }
     repositories {
         maven {
@@ -51,7 +59,7 @@ uploadArchives {
                 )
             }
 //            pom.version = '1.1.0-SNAPSHOT'
-            pom.version = '1.1.5'
+            pom.version = '1.1.6'
             pom.artifactId = 'Translation'
             pom.groupId = 'com.github.Bjelijah'
         }
