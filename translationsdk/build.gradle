@@ -15,7 +15,7 @@ dependencies {
     implementation "io.reactivex.rxjava3:rxjava:3.0.4"
     implementation "com.squareup.okhttp3:okhttp:4.9.0"
 }
-
+//github 发布release后 更新到jitPack
 afterEvaluate{
     publishing {
         publications {
@@ -27,6 +27,7 @@ afterEvaluate{
         }
     }
 }
+//发布到本地repo文件夹
 publishing {
     publications {
         maven(MavenPublication) {
@@ -42,7 +43,7 @@ publishing {
         }
     }
 }
-
+//发布到阿里云私有仓库
 uploadArchives {
     repositories {
         mavenDeployer {
