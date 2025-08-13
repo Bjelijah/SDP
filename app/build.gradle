@@ -1,6 +1,6 @@
 plugins {
     id 'com.android.application'
-    id 'com.cbj.translation'
+ //   id 'com.cbj.translation'
 }
 android {
     compileSdkVersion 30
@@ -32,7 +32,7 @@ dependencies {
 //    implementation project(path: ':sdpsdk')
 }
 
-translationData {
-    translationFrom = "en"
-    translationTo = "de"
-}
+//translationData {
+//    translationFrom = "en"
+//    translationTo = "de"
+//}
