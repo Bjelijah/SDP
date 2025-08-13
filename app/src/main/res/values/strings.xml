@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SDP</string>
+    <string name="test">sdp用于适配不同分辨率界面</string>
 </resources>
