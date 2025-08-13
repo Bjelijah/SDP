@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 public class DimenTool {
 
     public static void gen(){
-        gen("./sdpsdk",375);
+        gen("./sdpsdk",360);
     }
 
     public static void main(String[] args) {
