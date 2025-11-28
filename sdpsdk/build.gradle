@@ -26,6 +26,13 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
+
+task generateSourcesJar(type:Jar){
+    from android.sourceSets.main.java.srcDirs
+//    classifier "sources"
+    archiveClassifier.set("sources")
+}
+
 afterEvaluate{
     publishing {
         publications {
@@ -33,10 +40,9 @@ afterEvaluate{
                 groupId = 'com.github.Bjelijah'
                 artifactId = 'SDP'
                 version = '1.1.10'
-
-//                from components.java
+//                artifact generateSourcesJar//源码
+                from components.release
             }
-
         }
     }
 }
