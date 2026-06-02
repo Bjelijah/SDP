@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 10
-        versionName "1.1.7"
+        versionCode 12
+        versionName "1.1.12"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -19,6 +19,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java']
+            res.srcDirs = ['src/main/res']
         }
     }
     compileOptions {
@@ -39,7 +45,7 @@ afterEvaluate{
             maven(MavenPublication) {
                 groupId = 'com.github.Bjelijah'
                 artifactId = 'SDP'
-                version = '1.1.7'
+                version = '1.1.12'
                 artifact generateSourcesJar//源码
 //                from components.release
                 artifact tasks.getByName("bundleReleaseAar")
@@ -75,7 +81,7 @@ uploadArchives {
                 )
             }
 //            pom.version = '1.1.0-SNAPSHOT'
-            pom.version = '1.1.7'
+            pom.version = '1.1.12'
             pom.artifactId = 'SDP'
             pom.groupId = 'com.github.Bjelijah'
         }
