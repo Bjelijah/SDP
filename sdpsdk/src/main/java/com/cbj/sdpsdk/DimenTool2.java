@@ -38,7 +38,7 @@ public class DimenTool2 {
     public static void genLandscape() {
         System.out.println("====== 开始生成横屏 dimens ======");
         // 横屏设备（眼镜、车载、平板）在横向状态下，其物理 SmallestWidth（最窄边/高度）常见的 dp 矩阵
-        int[] landscapeSwSizes = {360, 400, 411, 480, 540, 600, 720, 800, 900, 1080};
+        int[] landscapeSwSizes = {360, 400, 411, 480, 540, 600, 630, 720, 800, 900, 1080};
 
         // 🌟 核心：横屏下，系统按高度(最窄边)匹配sw，而设计图总宽是1920。
         // 设备横向真实宽度 dp = sw * (16 / 9) ≈ sw * 1.778
